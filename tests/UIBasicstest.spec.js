@@ -23,16 +23,25 @@ test('Global fixture (browser) in Playwright Test', async({browser}) => //Here b
     const context = await browser.newContext();
     const page = await context.newPage();
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    await page.locator('#username').fill("rahulshetty");
+    await page.locator("[type='password']").fill("learning");
+    await page.locator("#signInBtn").click();
+    //Tp extract the below error message in any other tool we would've used expilicit wait, but in play wright we dont have to as we have defined the timeout in config file
+    const errormsg = await page.locator("[style*='block']").textContent();
+    console.log(errormsg);
+
+    await expect(page.locator("[style*='block']")).toContainText('Incorrect');
+
 });
 
 //Now say suppose we dont want to lauch browser with any cookies or cache, we can just use page fixture, this will automatically create context and page for us
-test.only('Page fixture in Playwright ', async({page}) => 
-{
-    await page.goto("https://google.com");
-    //get title - assertion
-    console.log(await page.title());
-    await expect(page).toHaveTitle("Google");
-});
+// test.only('Page fixture in Playwright ', async({page}) => 
+// {
+//     await page.goto("https://google.com");
+//     //get title - assertion
+//     console.log(await page.title());
+//     await expect(page).toHaveTitle("Google");
+// });
 
 //Playwright Test Execution Explaination
 /* 

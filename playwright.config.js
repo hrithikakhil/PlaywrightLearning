@@ -14,12 +14,13 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  timeout: 30*1000, //timeout to run entire test
   expect: {
-    timeout: 40*1000,
+    timeout: 40*1000, //timeout set for assertion [Expect]
   },
   reporter: 'html',
   use: {
-    browserName: 'firefox',
+    browserName: 'chromium',
     headless: false
   },
 });
