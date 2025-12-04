@@ -35,13 +35,13 @@ test('Global fixture (browser) in Playwright Test', async({browser}) => //Here b
 });
 
 //Now say suppose we dont want to lauch browser with any cookies or cache, we can just use page fixture, this will automatically create context and page for us
-// test.only('Page fixture in Playwright ', async({page}) => 
-// {
-//     await page.goto("https://google.com");
-//     //get title - assertion
-//     console.log(await page.title());
-//     await expect(page).toHaveTitle("Google");
-// });
+test('Page fixture in Playwright ', async({page}) => 
+{
+    await page.goto("https://google.com");
+    //get title - assertion
+    console.log(await page.title());
+    await expect(page).toHaveTitle("Google");
+});
 
 //Playwright Test Execution Explaination
 /* 

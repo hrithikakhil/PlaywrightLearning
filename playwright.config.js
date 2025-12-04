@@ -21,7 +21,9 @@ export default defineConfig({
   reporter: 'html',
   use: {
     browserName: 'chromium',
-    headless: false
+    headless: false,
+    screenshot: 'on', //Helps to take SS ata every step
+    trace: 'retain-on-failure' // Helps to log every step, helps in debugging
   },
 });
 
