@@ -7,26 +7,29 @@ class APIUtils{
 
     async getToken(){
         const loginresponse = await this.apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login", {
-            data: loginPayload
+            data: this.loginPayload
         });
         const loginJsonResponse = await loginresponse.json();
-        token = loginJsonResponse.token;
+        const token = loginJsonResponse.token;
         console.log("Token is: "+ token);
         return token;
     }
 
 
     async createOrder(orderPayload){
-        const orderResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order",{
+        let response = {};
+        response.token = await this.getToken();
+        const orderResponse = await this.apiContext.post("https://rahulshettyacademy.com/api/ecom/order/create-order",{
             data: orderPayload,
             headers:{
-                'Authorization': this.getToken(),
+                'Authorization': response.token,
                 'Content-Type': 'application/json'
             }
         });
         const orderJsonResponse = await orderResponse.json();
-        orderId = orderJsonResponse.orders[0];
-        return orderId;
+        const orderId = orderJsonResponse.orders[0];
+        response.orderId = orderId;
+        return response;
     }
 }
 
