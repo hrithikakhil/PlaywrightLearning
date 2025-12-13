@@ -22,6 +22,8 @@ test('Global fixture (browser) in Playwright Test', async({browser}) => //Here b
     //We should create a new context - this helps launch a new browser 
     const context = await browser.newContext();
     const page = await context.newPage();
+    page.on('request', request=> console.log(request.url()));
+    page.on('response', response=> console.log(response.url(), response.status()));
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     await page.locator('#username').fill("rahulshetty");
     await page.locator("[type='password']").fill("learning");
