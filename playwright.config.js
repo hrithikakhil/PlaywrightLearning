@@ -23,7 +23,7 @@ export default defineConfig({
     browserName: 'chromium',
     headless: false,
     screenshot: 'on', //Helps to take SS ata every step
-    trace: 'retain-on-failure' // Helps to log every step, helps in debugging
+    trace: 'on' // Helps to log every step, helps in debugging
   },
 });
 
